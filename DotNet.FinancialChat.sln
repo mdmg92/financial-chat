@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinancialChat.Blazor", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinancialChat.Bot", "src\FinancialChat.Bot\FinancialChat.Bot.csproj", "{DBA020C0-7B8A-4B87-B28D-9F9E74958D4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinancialChat.WebApi.Tests", "tests\FinancialChat.WebApi.Tests\FinancialChat.WebApi.Tests.csproj", "{1066546E-9DBE-4747-BD7F-84A98F52E193}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,7 @@ Global
 		{CB3F52BA-16AA-4B87-B54A-A5DD958FEDBA} = {B2C4F71F-64D4-46CA-A764-490DF5128D0C}
 		{87D3EE84-3DD0-4BB4-8EC5-AC7D52683D5F} = {B2C4F71F-64D4-46CA-A764-490DF5128D0C}
 		{DBA020C0-7B8A-4B87-B28D-9F9E74958D4D} = {B2C4F71F-64D4-46CA-A764-490DF5128D0C}
+		{1066546E-9DBE-4747-BD7F-84A98F52E193} = {A1895670-139A-43A6-BFAC-C7248143ADC5}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CB3F52BA-16AA-4B87-B54A-A5DD958FEDBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -40,5 +43,9 @@ Global
 		{DBA020C0-7B8A-4B87-B28D-9F9E74958D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBA020C0-7B8A-4B87-B28D-9F9E74958D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBA020C0-7B8A-4B87-B28D-9F9E74958D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1066546E-9DBE-4747-BD7F-84A98F52E193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1066546E-9DBE-4747-BD7F-84A98F52E193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1066546E-9DBE-4747-BD7F-84A98F52E193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1066546E-9DBE-4747-BD7F-84A98F52E193}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
