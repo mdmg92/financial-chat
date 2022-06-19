@@ -31,6 +31,15 @@ public class NewMessage : IRequest
                 Text     = @event.Text
             };
 
+            if (chatMessage.IsBotCommand())
+            {
+                await _mediator.Send(new SearchStockInfo
+                {
+                    Username  = @event.Username,
+                    StockCode = chatMessage.GetBotCommand()
+                }, cancellationToken);
+            }
+
             if (!chatMessage.IsBotCommand() && !chatMessage.IsNotice())
             {
                 chatMessage.SetTimestamp();
