@@ -1,3 +1,4 @@
+using FinancialChat.WebApi.Domain.Commands;
 using FinancialChat.WebApi.Domain.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,14 @@ public class ChatController : ControllerBase
     {
         _mediator = mediator;
         _logger   = logger;
+    }
+
+    [HttpPost("messages")]
+    public async Task<IActionResult> Post([FromBody] NewMessage message)
+    {
+        await _mediator.Send(message);
+
+        return Ok();
     }
 
     [HttpGet("messages")]
