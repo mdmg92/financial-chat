@@ -28,5 +28,14 @@ public class ChatController : ControllerBase
 
     [HttpGet("messages")]
     public async Task<IActionResult> Get()
-        => Ok(await _mediator.Send(new GetMessages()));
+    {
+        var messages = await _mediator.Send(new GetMessages());
+
+        if (messages.Any())
+        {
+            return Ok(messages);
+        }
+
+        return NoContent();
+    }
 }
