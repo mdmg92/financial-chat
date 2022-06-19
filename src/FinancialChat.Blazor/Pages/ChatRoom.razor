@@ -113,6 +113,11 @@ else
     {
         var isMine = name.Equals(_username, StringComparison.OrdinalIgnoreCase);
 
+        if (_messages.Count == 50)
+        {
+            _messages.RemoveAt(_message.Length - 1);
+        }
+
         _messages.Add(new Message(name, message, isMine));
 
         StateHasChanged();
