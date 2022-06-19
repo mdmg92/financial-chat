@@ -141,7 +141,7 @@ else
     {
         if (_isChatting && !string.IsNullOrEmpty(message))
         {
-            await _hubConnection.SendAsync("Broadcast", _username, message);
+            await ChatClient.SendMesage(new Message(_username, message, true));
 
             _newMessage = string.Empty;
         }
