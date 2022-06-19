@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using FinancialChat.Blazor;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using FinancialChat.Blazor.Areas.Identity;
 using FinancialChat.Blazor.Data;
@@ -20,6 +18,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services
     .AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+
+builder.Services.AddHttpClient<ChatClient>(client
+    => client.BaseAddress = new Uri(builder.Configuration.GetConnectionString("ChatApi")));
 
 var app = builder.Build();
 

@@ -1,6 +1,7 @@
 @page "/ChatRoom"
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IConfiguration Configuration
+@inject ChatClient ChatClient
 @using Microsoft.AspNetCore.SignalR.Client
 @using System.Security.Claims
 @using FinancialChat.Blazor.Models
@@ -81,7 +82,7 @@ else
             _isChatting = true;
             await Task.Delay(1);
 
-            _messages.Clear();
+            await GetMessages();
 
             var _hubUrl = Configuration.GetConnectionString("ChatApi") + "chat";
 
@@ -100,6 +101,12 @@ else
             _message = $"ERROR: Failed to start chat client {ex.Message}";
             _isChatting = false;
         }
+    }
+
+    private async Task GetMessages()
+    {
+        _messages.Clear();
+        _messages = (await ChatClient.GetMessages()).ToList();
     }
 
     private void BroadcastMessage(string name, string message)
