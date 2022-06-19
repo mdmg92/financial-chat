@@ -1,5 +1,7 @@
+using System.Reflection;
 using FinancialChat.WebApi.Data;
 using FinancialChat.WebApi.Hubs;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ChatDbContext>(options =>
     options.UseSqlite(connectionString));
+
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
