@@ -7,4 +7,9 @@
         <RootNamespace>FinancialChat.Bot</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="DotNetCore.CAP" Version="6.1.0" />
+        <PackageReference Include="DotNetCore.CAP.InMemoryStorage" Version="6.1.0" />
+        <PackageReference Include="DotNetCore.CAP.Kafka" Version="6.1.0" />
+    </ItemGroup>
 </Project>
