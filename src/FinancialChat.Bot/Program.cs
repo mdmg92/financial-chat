@@ -1,6 +1,12 @@
+using FinancialChat.Bot.Domain.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<StockClientConfig>(builder.Configuration.GetSection(nameof(StockClientConfig)));
+
+builder.Services.AddHttpClient<StockClient>();
+
 builder.Services.AddCap(x =>
 {
     x.UseInMemoryStorage();

@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="CsvHelper" Version="27.2.1" />
         <PackageReference Include="DotNetCore.CAP" Version="6.1.0" />
         <PackageReference Include="DotNetCore.CAP.InMemoryStorage" Version="6.1.0" />
         <PackageReference Include="DotNetCore.CAP.Kafka" Version="6.1.0" />
