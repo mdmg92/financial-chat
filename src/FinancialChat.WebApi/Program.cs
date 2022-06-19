@@ -1,5 +1,6 @@
 using System.Reflection;
 using FinancialChat.WebApi.Data;
+using FinancialChat.WebApi.Domain.Events;
 using FinancialChat.WebApi.Hubs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,8 @@ builder.Services.AddCap(x =>
         k.Servers = builder.Configuration.GetConnectionString("Kafka");
     });
 });
+
+builder.Services.AddTransient<StockInfoReceivedEventHandler>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
