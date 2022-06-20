@@ -1,4 +1,4 @@
-﻿namespace FinancialChat.WebApi.Data;
+﻿namespace FinancialChat.WebApi.Domain.Entities;
 
 public class Message
 {

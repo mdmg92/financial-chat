@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FinancialChat.WebApi.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinancialChat.WebApi.Data;
 

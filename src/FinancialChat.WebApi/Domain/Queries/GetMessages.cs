@@ -1,4 +1,5 @@
 using FinancialChat.WebApi.Data;
+using FinancialChat.WebApi.Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

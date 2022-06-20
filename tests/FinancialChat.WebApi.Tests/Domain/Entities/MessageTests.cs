@@ -1,4 +1,4 @@
-using FinancialChat.WebApi.Data;
+using FinancialChat.WebApi.Domain.Entities;
 using FluentAssertions;
 
 namespace FinancialChat.WebApi.Tests.Domain.Entities;

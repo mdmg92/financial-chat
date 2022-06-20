@@ -1,4 +1,5 @@
 ﻿using FinancialChat.WebApi.Data;
+using FinancialChat.WebApi.Domain.Entities;
 using FinancialChat.WebApi.Hubs;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
