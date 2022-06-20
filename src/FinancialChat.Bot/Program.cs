@@ -1,7 +1,12 @@
 using FinancialChat.Bot.Domain.Commands;
 using FinancialChat.Bot.Domain.Services;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Serilog
+builder.Host.UseSerilog((ctx, lc)
+    => lc.ReadFrom.Configuration(ctx.Configuration));
 
 // Add services to the container.
 builder.Services.AddTransient<ISearchStockInfoCommandHandler, SearchStockInfoCommandHandler>();

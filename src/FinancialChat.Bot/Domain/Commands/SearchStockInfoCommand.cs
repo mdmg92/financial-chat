@@ -26,6 +26,7 @@ public class SearchStockInfoCommandHandler : ICapSubscribe, ISearchStockInfoComm
     private readonly ICapPublisher _bus;
     private readonly ILogger<SearchStockInfoCommandHandler> _logger;
     private static string MessageTemplate = "{0} quote is ${1} per share";
+    private static string ErrorTemplate = "An error ocurred while requesting stock info for {0}: {1}";
 
     public SearchStockInfoCommandHandler(StockClient client, ICapPublisher bus,
         ILogger<SearchStockInfoCommandHandler> logger)
@@ -38,15 +39,29 @@ public class SearchStockInfoCommandHandler : ICapSubscribe, ISearchStockInfoComm
     [CapSubscribe("financialchat.bot")]
     public async Task Handle(SearchStockInfoCommand command)
     {
-        var info = await _client.DownloadStockInfo(command.StockCode);
+        _logger.LogInformation("Request to search stock info received {@Command}", command);
 
-        if (info is null)
+        var message = string.Empty;
+
+        try
         {
-            return;
+            var info = await _client.DownloadStockInfo(command.StockCode);
+
+            if (info is null)
+            {
+                _logger.LogInformation("Stock information not found");
+                return;
+            }
+
+            message = GetFormattedMessage(info);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error ocurred");
+            message = GetErrorMessage(command.StockCode, ex.Message);
         }
 
-        var message = GetFormattedMessage(info);
-
+        _logger.LogInformation("Publishing message to topic {Message}", message);
         _bus.Publish("financialchat.api", new StockInfoReceivedEvent
         {
             Username = command.Username,
@@ -56,4 +71,7 @@ public class SearchStockInfoCommandHandler : ICapSubscribe, ISearchStockInfoComm
 
     private static string GetFormattedMessage(StockInfo info)
         => string.Format(MessageTemplate, info.Symbol.ToUpper(), info.Close);
+
+    private static string GetErrorMessage(string code, string message)
+        => string.Format(MessageTemplate, code, message);
 }

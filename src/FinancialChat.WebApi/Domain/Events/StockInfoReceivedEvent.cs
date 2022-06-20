@@ -13,16 +13,19 @@ public class StockInfoReceivedEvent
 public class StockInfoReceivedEventHandler : ICapSubscribe
 {
     private readonly IHubContext<ChatHub> _hubContext;
-    private readonly ChatHub _chatHub;
+    private readonly ILogger<StockInfoReceivedEventHandler> _logger;
 
-    public StockInfoReceivedEventHandler(IHubContext<ChatHub> hubContext)
+    public StockInfoReceivedEventHandler(IHubContext<ChatHub> hubContext, ILogger<StockInfoReceivedEventHandler> logger)
     {
         _hubContext = hubContext;
+        _logger     = logger;
     }
 
     [CapSubscribe("financialchat.api")]
     public async Task Handle(StockInfoReceivedEvent @event, CancellationToken cancellationToken)
     {
+        _logger.LogInformation("Event received from bot {@Event}", @event);
+
         await _hubContext.Clients.All.SendAsync("Broadcast", @event.Username, @event.Message);
     }
 }

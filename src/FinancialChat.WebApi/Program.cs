@@ -4,8 +4,13 @@ using FinancialChat.WebApi.Domain.Events;
 using FinancialChat.WebApi.Hubs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Serilog
+builder.Host.UseSerilog((ctx, lc)
+    => lc.ReadFrom.Configuration(ctx.Configuration));
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

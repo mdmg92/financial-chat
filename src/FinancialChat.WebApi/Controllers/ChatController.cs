@@ -21,6 +21,8 @@ public class ChatController : ControllerBase
     [HttpPost("messages")]
     public async Task<IActionResult> Post([FromBody] NewMessage message)
     {
+        _logger.LogInformation("Posting new message");
+
         await _mediator.Send(message);
 
         return Ok();
@@ -35,6 +37,8 @@ public class ChatController : ControllerBase
         {
             return Ok(messages);
         }
+
+        _logger.LogInformation("Messages not found");
 
         return NoContent();
     }
