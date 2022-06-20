@@ -2,6 +2,8 @@ using System.Reflection;
 using FinancialChat.WebApi.Data;
 using FinancialChat.WebApi.Domain.Events;
 using FinancialChat.WebApi.Hubs;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -30,7 +32,13 @@ builder.Services.AddCap(x =>
 
 builder.Services.AddTransient<StockInfoReceivedEventHandler>();
 
-builder.Services.AddControllers();
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(Program));
+
+builder.Services.AddControllers().AddFluentValidation(options =>
+{
+    options.DisableDataAnnotationsValidation = true;
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
