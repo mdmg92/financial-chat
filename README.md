@@ -18,7 +18,7 @@ from an API using a specific command.
   the bot.
 - [x] Have the chat messages ordered by their timestamps and show only the last 50
   messages.
-- [] Unit test the functionality you prefer.
+- [x] Unit test the functionality you prefer.
 
 ### The Chat
 The Web UI is made with Blazor WebAssembly, following the tutorial from Microsoft Docs: [Tutorial: Build a Blazor Server chat app](https://docs.microsoft.com/en-us/azure/azure-signalr/signalr-tutorial-build-blazor-server-chat-app)
@@ -36,3 +36,6 @@ The Web API will receive the event and send the message to all clients of the Si
 
 ### Docker support
 I added a docker-compose.yaml file to get kafka up and running.
+
+### Tests
+I added tests for the Message class in the WebApi. This class is in charge of the new messages to the chat and identifies if a message is a command or a notice. If the message is a bot command, the class can return the stock code of the message.
